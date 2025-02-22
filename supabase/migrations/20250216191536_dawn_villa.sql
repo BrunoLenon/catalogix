@@ -17,8 +17,8 @@ CREATE POLICY "Admin full access"
     EXISTS (
       SELECT 1 FROM profiles
       WHERE profiles.id = auth.uid()
-      AND profiles.role = 'admin'
-      AND profiles.active = true
+        AND profiles.role = 'admin'
+        AND profiles.active = true
     )
   );
 
@@ -28,4 +28,4 @@ ALTER TABLE categories ENABLE ROW LEVEL SECURITY;
 -- Grant necessary permissions
 GRANT SELECT ON categories TO anon;
 GRANT SELECT ON categories TO authenticated;
-GRANT ALL ON categories TO service_role;
+GRANT SELECT, INSERT, UPDATE, DELETE ON categories TO service_role; -- Apenas permissões necessárias
